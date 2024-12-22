@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MigrationApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MigrationApplication.class, args);
+		var applicationContext = SpringApplication.run(MigrationApplication.class, args);
+		applicationContext.close();
 	}
 
 }
