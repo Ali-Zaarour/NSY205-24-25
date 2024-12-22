@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Configuration;
                         name = "finance-app",
                         email = "example@outlook.com",
                         url = "https://example-url"),
-                description = "OpenApi documentation for university API",
-                title = "OpenApi specification activity management system",
+                description = "OpenApi documentation",
+                title = "OpenApi specification",
                 version = "1.0"
         ),
         servers = {

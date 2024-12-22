@@ -27,7 +27,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class Security {
 
     private static final String[] WHITE_LIST_URL = {
+            "/v3/api-docs",
             "/v3/api-docs/**",
+            "/swagger-ui",
             "/swagger-ui/**",
             "/unsecured/authentication"
     };
