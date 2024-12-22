@@ -109,13 +109,11 @@ create table if not exists app_user
     created_at      timestamp    not null default now(),
     updated_at      timestamp,
     deleted_at      timestamp,
-    created_by      uuid,
 
     constraint app_user_pkey primary key (id),
     constraint app_user_unique_username unique (username),
     constraint app_user_aus_id_fkey foreign key (aus_id) references app_user_status (id),
     constraint app_user_aur_id_fkey foreign key (aur_id) references app_user_role (id),
-    constraint app_user_self_fkey foreign key (created_by) references app_user (id),
     constraint app_user_os_id_fkey foreign key (os_id) references organization_side (id)
 
 );

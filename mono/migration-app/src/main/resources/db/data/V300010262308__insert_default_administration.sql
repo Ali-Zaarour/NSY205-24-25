@@ -1,10 +1,5 @@
 -- todo this file need to be in the top always
 
--- insert admin organization_side default data
-insert into organization_side (key, description)
-values ('M0','M0')
-on conflict do nothing;
-
 --insert admin app_user default administrator data
 insert into app_user(username, password, os_id, aur_id)
 values ('m0_admin', '$argon2id$v=19$m=16384,t=2,p=1$1DJSYnC4Fb8PR7R/rfQZ6w$Uz6MKw+/GI6ttmp20j3QrjdqrczC7N6xOqIV2dCUp3I',
