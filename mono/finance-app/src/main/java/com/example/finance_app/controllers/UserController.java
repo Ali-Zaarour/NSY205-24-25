@@ -68,8 +68,8 @@ public class UserController {
     )
     @PostMapping
     @PreAuthorize("hasAuthority('permission:create-user')")
-    public ResponseEntity<AppUserDTO> createUser(@Valid @RequestBody CreateUserRequest createUserRequest, @AuthenticationPrincipal @NonNull AppUser principalDetails) {
-        var createdUser = userService.createUser(createUserRequest, principalDetails.getId());
+    public ResponseEntity<AppUserDTO> createUser(@Valid @RequestBody CreateUserRequest createUserRequest) {
+        var createdUser = userService.createUser(createUserRequest);
         return createdUser.map(ResponseEntity::ok).orElseThrow(() -> new DataIntegrityViolationException(ExceptionMessage.DATA_INTEGRITY_VIOLATION));
     }
 

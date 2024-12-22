@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<AppUserDTO> createUser(CreateUserRequest createUserRequest, UUID principalId) {
+    public Optional<AppUserDTO> createUser(CreateUserRequest createUserRequest) {
         //check if user already exists with the same username provided by the administrator
         var exist = appUserRepository.existsByUsername(createUserRequest.getUsername());
         if (!exist) {
@@ -47,7 +47,6 @@ public class UserServiceImpl implements UserService {
                     .username(createUserRequest.getUsername())
                     .password(argon2PasswordEncoder.encode(createUserRequest.getPassword()))
                     .organizationSide(OrganizationSide.builder().id(createUserRequest.getOrganizationId()).build())
-                    .createdBy(AppUser.builder().id(principalId).build())
                     .build();
             var createdAppUser = appUserRepository.save(newAppUser);
             return Optional.of(AppUserAuthDetailsMapper.MAPPER.toAppUserDTO(createdAppUser));

@@ -31,7 +31,8 @@ public class Security {
             "/v3/api-docs/**",
             "/swagger-ui",
             "/swagger-ui/**",
-            "/unsecured/authentication"
+            "/unsecured/authentication",
+            "/actuator/**",
     };
 
     private final JWTFilter jwtFilter;

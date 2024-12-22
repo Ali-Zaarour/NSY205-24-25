@@ -70,15 +70,6 @@ public class AppUser implements UserDetails {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Timestamp createdAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "created_by", foreignKey = @ForeignKey(name = "app_user_self_fkey"))
-    @ToString.Exclude
-    private AppUser createdBy;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "updated_by", foreignKey = @ForeignKey(name = "app_user_updated_by_fkey"))
-    @ToString.Exclude
-    private AppUser updatedBy;
 
     @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<AppUserPermissionMapping> permissionMappings;

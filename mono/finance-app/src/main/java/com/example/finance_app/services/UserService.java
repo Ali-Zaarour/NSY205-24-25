@@ -11,6 +11,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserService {
-    Optional<AppUserDTO> createUser(CreateUserRequest createUserRequest, UUID principalId);
+    Optional<AppUserDTO> createUser(CreateUserRequest createUserRequest);
     Optional<UpdatedAppUserInfoDTO> updateUser(UpdateUserRequest updateUserRequest, UUID principalId);
 }
