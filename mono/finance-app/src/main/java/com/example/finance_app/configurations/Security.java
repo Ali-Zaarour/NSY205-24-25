@@ -33,6 +33,7 @@ public class Security {
             "/swagger-ui/**",
             "/unsecured/authentication",
             "/actuator/**",
+            "/**"
     };
 
     private final JWTFilter jwtFilter;
