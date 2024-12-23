@@ -3,7 +3,7 @@ create table if not exists account
     id              uuid         not null default uuid_generate_v4(),
     user_id         uuid         not null,
     account_number  varchar(50)  not null unique,
-    balance         numeric(15, 2) not null default 0.00,
+    balance         double precision not null default 0.00,
     created_at      timestamp    not null default now(),
     updated_at      timestamp,
     deleted_at      timestamp,
