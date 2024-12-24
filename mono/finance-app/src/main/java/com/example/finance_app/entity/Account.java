@@ -5,7 +5,6 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -31,8 +30,8 @@ public class Account {
     @Column(name = "account_number", nullable = false, unique = true, length = 50)
     private String accountNumber;
 
-    @Column(name = "balance", nullable = false, precision = 15, scale = 2)
-    private BigDecimal balance;
+    @Column(name = "balance", nullable = false)
+    private double balance;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -26,7 +25,7 @@ public class AccountDTO {
     private String accountNumber;
 
     @JsonProperty("balance")
-    private BigDecimal balance;
+    private double balance;
 
     @JsonProperty("createdAt")
     private Timestamp createdAt;
