@@ -5,12 +5,14 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Mono-app">
         <intProp name="ThreadGroup.num_threads">200</intProp>
         <intProp name="ThreadGroup.ramp_time">100</intProp>
-        <longProp name="ThreadGroup.duration">3600</longProp>
+        <longProp name="ThreadGroup.duration">450</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -280,7 +282,7 @@
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create a user">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
-          <stringProp name="HTTPSampler.path">/mono/finance-app/admin/users</stringProp>
+          <stringProp name="HTTPSampler.path">/mono/finance-app/users</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -292,7 +294,7 @@
                 <stringProp name="Argument.value">{&#xd;
   &quot;username&quot;: &quot;${randomUsername}&quot;,&#xd;
   &quot;password&quot;: &quot;0123456789&quot;,&#xd;
-  &quot;organizationId&quot;: &quot;f52b93ca-d8d3-43e3-af9d-9f8023aa9628&quot;&#xd;
+  &quot;organizationId&quot;: &quot;ca0e4566-ebfc-4512-a3b5-ef7c429ea449&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -300,11 +302,11 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
-                <stringProp name="Argument.value">eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM1MTUwMjcwLCJleHAiOjE3NDA1MTQyNzAsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.asg-vO8ZyylJFEim4Wqh8r7H6pemCPRungTYOlFSlB0</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -321,7 +323,7 @@ vars.put(&quot;randomUsername&quot;, randomString + randomNum)
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223PreProcessor>
           <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
