@@ -279,7 +279,7 @@
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create a user">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create a user" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/users</stringProp>
@@ -302,7 +302,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
@@ -312,7 +312,7 @@
             </collectionProp>
           </Arguments>
           <hashTree/>
-          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor">
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -323,6 +323,33 @@ vars.put(&quot;randomUsername&quot;, randomString + randomNum)
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223PreProcessor>
           <hashTree/>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${authToken}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get accout by id">
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">7500</stringProp>
+          <stringProp name="HTTPSampler.path">/mono/finance-app/account/${id}</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
@@ -335,6 +362,26 @@ vars.put(&quot;randomUsername&quot;, randomString + randomNum)
               </elementProp>
             </collectionProp>
           </HeaderManager>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="authToken" elementType="Argument">
+                <stringProp name="Argument.name">authToken</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="id" elementType="Argument">
+                <stringProp name="Argument.name">id</stringProp>
+                <stringProp name="Argument.value">b6e97a94-769d-4af5-9dbd-272037322d23</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
           <hashTree/>
         </hashTree>
         <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="delay between request">
