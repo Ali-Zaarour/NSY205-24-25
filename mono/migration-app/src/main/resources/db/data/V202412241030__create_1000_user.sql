@@ -11,7 +11,7 @@ $$
         -- Get all status IDs
         SELECT array_agg(id) INTO status_ids FROM status;
 
-        FOR i IN 1..10000 LOOP
+        FOR i IN 1..100 LOOP
                 -- Insert user
                 INSERT INTO app_user (username, password, os_id)
                 VALUES (
