@@ -5,6 +5,7 @@ import com.example.finance_app.entity.Account;
 import com.example.finance_app.entity.AppUser;
 import com.example.finance_app.payload.CreateAccountRequest;
 import com.example.finance_app.repositories.AccountRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +38,10 @@ public class AccountServiceImpl implements AccountService {
         return convertToDTO(savedAccount);
     }
 
+    @Transactional
     @Override
     public void deleteAccount(UUID id) {
-        accountRepository.deleteById(id);
+        accountRepository.softDeleteById(id);
     }
 
     private AccountDTO convertToDTO(Account account) {
