@@ -2,6 +2,7 @@ package com.example.finance_app.services;
 
 import com.example.finance_app.dto.TransactionDTO;
 import com.example.finance_app.entity.Account;
+import com.example.finance_app.entity.Status;
 import com.example.finance_app.entity.Transaction;
 import com.example.finance_app.entity.TransactionType;
 import com.example.finance_app.payload.CreateTransactionRequest;
@@ -27,6 +28,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .account(Account.builder().id(createTransactionRequest.getAccountId()).build())
                 .amount(createTransactionRequest.getAmount())
                 .transactionType(TransactionType.builder().id(createTransactionRequest.getTypeId()).build())
+                .status(Status.builder().id(createTransactionRequest.getStatusId()).build())
                 .build();
         Transaction savedTransaction = transactionRepository.save(transaction);
         return convertToDTO(savedTransaction);

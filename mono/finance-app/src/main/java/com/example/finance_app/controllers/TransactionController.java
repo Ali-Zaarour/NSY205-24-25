@@ -4,6 +4,7 @@ import com.example.finance_app.dto.TransactionDTO;
 import com.example.finance_app.payload.CreateTransactionRequest;
 import com.example.finance_app.services.TransactionService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import java.util.UUID;
 
 @RestController
 @Tag(name = "Transaction api")
+@SecurityRequirement(name = "bearerAuth")
 @RequestMapping("/transaction")
 public class TransactionController {
 

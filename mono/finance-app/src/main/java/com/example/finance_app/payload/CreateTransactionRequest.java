@@ -21,6 +21,9 @@ public class CreateTransactionRequest {
     @JsonProperty("amount")
     private BigDecimal amount;
 
+    @JsonProperty("status_id")
+    private UUID statusId;
+
     @JsonProperty("type_id")
     private UUID typeId;
 }

@@ -66,7 +66,8 @@ public class UserServiceImpl implements UserService {
             // get user current data, base on the user id provided if it doesn't exist throw an exception not found 404
             if (!appUserRepository.existsById(updateUserRequest.getUserId())) throw new UserNotFoundException();
 
-            // if not null,verifies if the organization id exist , if not throw exception 409, and not the same as the last one
+            // if not null,verifies if the organization id exist,
+            // if not throw exception 409, and different from the last one
             if (updateUserRequest.getOrganizationId() != null) {
                 var organizationSide = organizationSideRepository.findById(updateUserRequest.getOrganizationId()).orElseThrow(() -> new DataIntegrityViolationException(ExceptionMessage.DATA_INTEGRITY_VIOLATION));
                 updates.put(DBParamsName.APP_USER_ORGANIZATION_SIDE, organizationSide);
@@ -79,7 +80,6 @@ public class UserServiceImpl implements UserService {
                 }
                 updates.put(DBParamsName.APP_USER_USERNAME, updateUserRequest.getUsername());
                 updates.put(DBParamsName.APP_USER_UPDATED_AT, System.currentTimeMillis());
-                updates.put(DBParamsName.APP_USER_UPDATED_BY, AppUser.builder().id(principalId).build());
             }
             //hash the password if it's not null and save
             if (updateUserRequest.getPassword() != null) {

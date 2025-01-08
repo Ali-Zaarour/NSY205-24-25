@@ -4,6 +4,7 @@ import com.example.finance_app.dto.ReportSummaryDTO;
 import com.example.finance_app.dto.UserReportSummaryDTO;
 import com.example.finance_app.services.ReportService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.UUID;
 
 @RestController
 @Tag(name = "Report api")
+@SecurityRequirement(name = "bearerAuth")
 @RequestMapping("/report")
 public class ReportController {
 
