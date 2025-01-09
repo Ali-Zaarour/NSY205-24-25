@@ -74,3 +74,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+mono/finance-app/java_pid29728.hprof
+mono/finance-app/java_pid36552.hprof
+mono/finance-app/java_pid53388.hprof

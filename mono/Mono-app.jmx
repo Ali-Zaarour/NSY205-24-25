@@ -5,11 +5,13 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Mono-app">
-        <intProp name="ThreadGroup.num_threads">500</intProp>
-        <intProp name="ThreadGroup.ramp_time">60</intProp>
+        <intProp name="ThreadGroup.num_threads">5000</intProp>
+        <intProp name="ThreadGroup.ramp_time">50</intProp>
         <longProp name="ThreadGroup.duration">100</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
@@ -203,44 +205,7 @@
             </value>
           </objProp>
           <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-        <ResultCollector guiclass="ComparisonVisualizer" testclass="ResultCollector" testname="Comparison Assertion Visualizer" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <sentBytes>true</sentBytes>
-              <url>true</url>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-              <connectTime>true</connectTime>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-          <boolProp name="ResultCollector.success_only_logging">true</boolProp>
+          <stringProp name="RespTimeGraph.graphtitle">Response Time Graph</stringProp>
         </ResultCollector>
         <hashTree/>
         <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="mono db connection">
@@ -263,7 +228,7 @@
         </JDBCDataSource>
         <hashTree/>
         <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
-          <stringProp name="ConstantTimer.delay">1000</stringProp>
+          <stringProp name="ConstantTimer.delay">100</stringProp>
         </ConstantTimer>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="login">
@@ -310,7 +275,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create a user">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create a user" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/users</stringProp>
@@ -333,7 +298,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
@@ -368,7 +333,7 @@ vars.put(&quot;randomUsername&quot;, randomString + randomNum)
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-user-id-for-patch">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-user-id-for-patch" enabled="true">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM app_user
@@ -385,7 +350,7 @@ LIMIT 1;
           <stringProp name="variableNames">id</stringProp>
         </JDBCSampler>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -403,7 +368,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="update user info">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="update user info" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/users</stringProp>
@@ -427,7 +392,7 @@ if (matcher.find()) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
@@ -437,7 +402,7 @@ if (matcher.find()) {
             </collectionProp>
           </Arguments>
           <hashTree/>
-          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="get-random-name">
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="get-random-name" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -448,7 +413,7 @@ vars.put(&quot;newRandomName&quot;, randomString + randomNum)
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223PreProcessor>
           <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -462,7 +427,7 @@ vars.put(&quot;newRandomName&quot;, randomString + randomNum)
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-get">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-get" enabled="true">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM account
@@ -479,7 +444,7 @@ LIMIT 1;
           <stringProp name="variableNames">id</stringProp>
         </JDBCSampler>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -497,7 +462,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get accout by id">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get accout by id" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/account/${accountId_1}</stringProp>
@@ -510,7 +475,7 @@ if (matcher.find()) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -523,7 +488,7 @@ if (matcher.find()) {
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
@@ -534,7 +499,7 @@ if (matcher.find()) {
           </Arguments>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-user-id">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-user-id" enabled="true">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM app_user
@@ -551,7 +516,7 @@ LIMIT 1;
           <stringProp name="variableNames">id</stringProp>
         </JDBCSampler>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -569,7 +534,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create account">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create account" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/account</stringProp>
@@ -636,7 +601,7 @@ vars.put(&quot;randomAccountBalance&quot;, String.valueOf(randomNum))
           </Arguments>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-delete">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-delete" enabled="true">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM account
@@ -653,7 +618,7 @@ LIMIT 1;
           <stringProp name="variableNames">id</stringProp>
         </JDBCSampler>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -671,7 +636,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="delete account by id">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="delete account by id" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/account/${accountId_2}</stringProp>
@@ -708,43 +673,6 @@ if (matcher.find()) {
           </Arguments>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get report summary">
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">7500</stringProp>
-          <stringProp name="HTTPSampler.path">/mono/finance-app/report/summary</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">Bearer ${authToken}</stringProp>
-              </elementProp>
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Content-Type</stringProp>
-                <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="authToken" elementType="Argument">
-                <stringProp name="Argument.name">authToken</stringProp>
-                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </Arguments>
-          <hashTree/>
-        </hashTree>
         <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-user-id_1">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
@@ -762,7 +690,7 @@ LIMIT 1;
           <stringProp name="variableNames">id</stringProp>
         </JDBCSampler>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -780,7 +708,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get report summary by id">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get report summary by id" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/report/user-summary/${userId_1}</stringProp>
@@ -793,7 +721,7 @@ if (matcher.find()) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -806,7 +734,7 @@ if (matcher.find()) {
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
@@ -817,7 +745,7 @@ if (matcher.find()) {
           </Arguments>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-type-id">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-type-id" enabled="true">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM transaction_type
@@ -834,7 +762,7 @@ LIMIT 1;
           <stringProp name="variableNames">id</stringProp>
         </JDBCSampler>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -852,7 +780,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-create-trans">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-create-trans" enabled="true">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM account
@@ -869,7 +797,7 @@ LIMIT 1;
           <stringProp name="variableNames">id</stringProp>
         </JDBCSampler>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -887,7 +815,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="get-trans-status">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="get-trans-status" enabled="true">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM status
@@ -904,7 +832,7 @@ LIMIT 1;
           <stringProp name="variableNames">id</stringProp>
         </JDBCSampler>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -922,7 +850,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create transaction">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create transaction" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/transaction</stringProp>
@@ -946,7 +874,7 @@ if (matcher.find()) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="generate create account data">
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="generate create account data" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -959,7 +887,7 @@ vars.put(&quot;accountAmount&quot;, String.valueOf(randomNum))
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223PreProcessor>
           <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -972,7 +900,7 @@ vars.put(&quot;accountAmount&quot;, String.valueOf(randomNum))
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
@@ -983,7 +911,7 @@ vars.put(&quot;accountAmount&quot;, String.valueOf(randomNum))
           </Arguments>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-id">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-id" enabled="true">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM transactions
@@ -1000,7 +928,7 @@ LIMIT 1;
           <stringProp name="variableNames">id</stringProp>
         </JDBCSampler>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -1018,7 +946,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get trans by id">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get trans by id" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/transaction/${transId}</stringProp>
@@ -1031,7 +959,7 @@ if (matcher.find()) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -1044,7 +972,7 @@ if (matcher.find()) {
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
@@ -1055,7 +983,7 @@ if (matcher.find()) {
           </Arguments>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-id-for-delete">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-id-for-delete" enabled="true">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM transactions
@@ -1072,7 +1000,7 @@ LIMIT 1;
           <stringProp name="variableNames">id</stringProp>
         </JDBCSampler>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -1096,6 +1024,43 @@ if (matcher.find()) {
           <stringProp name="HTTPSampler.path">/mono/finance-app/transaction/${trns_2}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${authToken}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="authToken" elementType="Argument">
+                <stringProp name="Argument.name">authToken</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get report summary" enabled="false">
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">7500</stringProp>
+          <stringProp name="HTTPSampler.path">/mono/finance-app/report/summary</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
