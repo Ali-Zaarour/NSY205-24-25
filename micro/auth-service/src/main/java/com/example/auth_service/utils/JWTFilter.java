@@ -24,6 +24,7 @@ import java.util.Optional;
 /**
  * Filter for handling JWT authentication on incoming requests.
  */
+
 @Component
 public class JWTFilter extends OncePerRequestFilter {
 
@@ -81,8 +82,8 @@ public class JWTFilter extends OncePerRequestFilter {
                     var entity = appUserRepository.findByUsername(jwtUsername).get();
 
                     // Add user details to the response headers for downstream services
-                    response.addHeader("X-User-Id", entity.getId().toString());
-                    response.addHeader("X-User-Roles", roles);
+                    request.setAttribute("X-User-Id", entity.getId().toString());
+                    request.setAttribute("X-User-Roles", roles);
                 }
             }
         } catch (JWTVerificationException exc) {

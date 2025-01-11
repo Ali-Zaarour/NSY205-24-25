@@ -1,4 +1,4 @@
-package com.example.auth_service.configurations.customHandler;
+package com.example.auth_service.configurations;
 
 
 import com.example.auth_service.exception.config.ErrorStruct;

@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Tag(name = "Login api")
-@RequestMapping("/unsecured/authentication")
+@RequestMapping("micro/auth-service/unsecured/authentication")
 public class LoginController {
 
     private final AuthenticationService authenticationService;

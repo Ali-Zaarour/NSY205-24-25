@@ -1,7 +1,6 @@
 package com.example.auth_service.configurations;
 
 
-import com.example.auth_service.configurations.customHandler.CustomAuthenticationEntryPoint;
 import com.example.auth_service.utils.JWTFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -40,13 +39,15 @@ public class Security {
     private final CorsConfig corsConfig;
     private final AuthenticationProvider authenticationProvider;
     private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+    private final DynamicHeaderFilter dynamicHeaderFilter;
 
     @Autowired
-    public Security(JWTFilter jwtFilter, AuthenticationProvider authenticationProvider, CorsConfig corsConfig, CustomAuthenticationEntryPoint customAuthenticationEntryPoint) {
+    public Security(DynamicHeaderFilter dynamicHeaderFilter,JWTFilter jwtFilter, AuthenticationProvider authenticationProvider, CorsConfig corsConfig, CustomAuthenticationEntryPoint customAuthenticationEntryPoint) {
         this.jwtFilter = jwtFilter;
         this.authenticationProvider = authenticationProvider;
         this.corsConfig = corsConfig;
         this.customAuthenticationEntryPoint = customAuthenticationEntryPoint;
+        this.dynamicHeaderFilter =  dynamicHeaderFilter;
     }
 
     @Bean
@@ -63,6 +64,7 @@ public class Security {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(this.authenticationProvider)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(dynamicHeaderFilter, JWTFilter.class)
                 // Rejecting request as unauthorized when entry point is reached
                 .exceptionHandling(exHd -> exHd.authenticationEntryPoint(customAuthenticationEntryPoint));
         return httpSecurity.build();
