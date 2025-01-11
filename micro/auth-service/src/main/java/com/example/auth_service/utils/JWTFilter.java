@@ -1,6 +1,7 @@
 package com.example.auth_service.utils;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.example.auth_service.repositories.AppUserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,10 +31,13 @@ public class JWTFilter extends OncePerRequestFilter {
 
     private final UserDetailsService userDetailsService;
 
+    private final AppUserRepository appUserRepository;
+
     @Autowired
-    public JWTFilter(JWTUtil jwtUtil, UserDetailsService userDetailsService) {
+    public JWTFilter(JWTUtil jwtUtil, UserDetailsService userDetailsService, AppUserRepository appUserRepository) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
+        this.appUserRepository = appUserRepository;
     }
 
     @Override
@@ -66,6 +71,18 @@ public class JWTFilter extends OncePerRequestFilter {
                             new WebAuthenticationDetailsSource().buildDetails(request));
                     // Setting the authentication on the Security Context using the created token
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+
+                    // Extract roles or permissions from the UserDetails object
+                    String roles = userDetails.getAuthorities().stream()
+                            .map(GrantedAuthority::getAuthority)
+                            .reduce((a, b) -> a + "," + b) // Join roles with a comma
+                            .orElse("");
+
+                    var entity = appUserRepository.findByUsername(jwtUsername).get();
+
+                    // Add user details to the response headers for downstream services
+                    response.addHeader("X-User-Id", entity.getId().toString());
+                    response.addHeader("X-User-Roles", roles);
                 }
             }
         } catch (JWTVerificationException exc) {
