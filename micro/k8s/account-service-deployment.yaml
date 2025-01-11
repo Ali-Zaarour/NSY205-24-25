@@ -24,7 +24,7 @@ spec:
           image: account-service:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8090
+            - containerPort: 8093
           resources:
             requests:
               cpu: "100m"       # Minimum CPU: 10% of a core

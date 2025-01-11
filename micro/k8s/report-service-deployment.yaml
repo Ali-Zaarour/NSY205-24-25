@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: client-service-deployment
+  name: report-service-deployment
   labels:
-    app: client-service
+    app: report-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: client-service
+      app: report-service
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,14 +17,14 @@ spec:
   template:
     metadata:
       labels:
-        app: client-service
+        app: report-service
     spec:
       containers:
-        - name: client-service
-          image: client-service:latest
+        - name: report-service
+          image: report-service:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8091
+            - containerPort: 8092
           resources:
             requests:
               cpu: "100m"       # Minimum CPU: 10% of a core
@@ -35,12 +35,12 @@ spec:
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: 8091
+              port: 8092
             initialDelaySeconds: 10
             periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /actuator/health
-              port: 8091
+              port: 8092
             initialDelaySeconds: 15
             periodSeconds: 10
