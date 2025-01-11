@@ -23,7 +23,7 @@ ENV SPRING_DATASOURCE_USERNAME=postgres
 ENV SPRING_DATASOURCE_PASSWORD=password
 
 # Copy the built JAR from the build stage
-ARG JAR_FILE=build/libs/auth-service-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=build/libs/client-service-0.0.1-SNAPSHOT.jar
 COPY --from=build /app/${JAR_FILE} app.jar
 
 # Define the service name
