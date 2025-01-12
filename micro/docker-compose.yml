@@ -1,0 +1,57 @@
+version: "3.9"
+services:
+  auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    container_name: auth-service
+    ports:
+      - "8090:8090" # Expose auth-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5433/mono-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+  client-service:
+      build:
+        context: ./client-service
+        dockerfile: Dockerfile
+      container_name: client-service
+      ports:
+        - "8091:8091" # Expose client-service
+      environment:
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5433/mono-db
+        - SPRING_DATASOURCE_USERNAME=postgres
+        - SPRING_DATASOURCE_PASSWORD=postgres
+  report-service:
+    build:
+      context: ./report-service
+      dockerfile: Dockerfile
+    container_name: report-service
+    ports:
+      - "8092:8092" # Expose report-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5433/mono-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+  account-service:
+    build:
+      context: ./account-service
+      dockerfile: Dockerfile
+    container_name: account-service
+    ports:
+      - "8093:8093" # Expose account-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5433/mono-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+  transaction-service:
+    build:
+      context: ./transaction-service
+      dockerfile: Dockerfile
+    container_name: transaction-service
+    ports:
+      - "8094:8094" # Expose transaction-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5433/mono-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres

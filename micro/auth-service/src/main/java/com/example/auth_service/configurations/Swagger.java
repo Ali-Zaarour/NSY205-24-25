@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
                 version = "1.0"
         ),
         servers = {
-                @Server(description = "Local Env", url = "http://localhost:8090/micro/auth-service"),
+                @Server(description = "Local Env", url = "http://localhost:8090"),
                 @Server(description = "Prod Env", url = "https://prod-ex.com")
         }
         //if all endpoints are secure, 100% add this as global config
