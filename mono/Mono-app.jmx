@@ -22,7 +22,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -231,7 +231,7 @@
           <stringProp name="ConstantTimer.delay">100</stringProp>
         </ConstantTimer>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="login" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="login">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/unsecured/authentication</stringProp>
@@ -255,7 +255,7 @@
           <stringProp name="HTTPSampler.implementation">Java</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Content-Type</stringProp>
@@ -264,7 +264,7 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
             </collectionProp>
@@ -275,7 +275,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create a user" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create a user">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/users</stringProp>
@@ -290,7 +290,7 @@
                 <stringProp name="Argument.value">{&#xd;
   &quot;username&quot;: &quot;${randomUsername}&quot;,&#xd;
   &quot;password&quot;: &quot;0123456789&quot;,&#xd;
-  &quot;organizationId&quot;: &quot;ca0e4566-ebfc-4512-a3b5-ef7c429ea449&quot;&#xd;
+  &quot;organizationId&quot;: &quot;85e2f251-cf05-42e7-97bf-91f3949e0ad6&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -298,17 +298,17 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
-                <stringProp name="Argument.value">eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2Mzc0MzI2LCJleHAiOjE3NDE0NzkxMjYsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.dyqJNLba1CDlDNIH9frVfj9dgEG8Icf2lV7fudsV9K8</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2NzYxMjgzLCJleHAiOjE3NDE4NjYwODMsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.6Y9LIh9opjDpUbukGmndDDak6TBt7ICXjpO66SrZ7wk</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
           </Arguments>
           <hashTree/>
-          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="genrate random username" enabled="true">
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="genrate random username">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -319,7 +319,7 @@ vars.put(&quot;randomUsername&quot;, randomString + randomNum)
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223PreProcessor>
           <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -333,10 +333,11 @@ vars.put(&quot;randomUsername&quot;, randomString + randomNum)
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-user-id-for-patch" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-user-id-for-patch">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM app_user
+Where username != &apos;m0_admin&apos;
 ORDER BY RANDOM()
 LIMIT 1;
 </stringProp>
@@ -368,7 +369,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="update user info" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="update user info">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/users</stringProp>
@@ -384,7 +385,7 @@ if (matcher.find()) {
   &quot;userId&quot;: &quot;${userIdForUpdate}&quot;,&#xd;
   &quot;username&quot;: &quot;${newRandomName}&quot;,&#xd;
   &quot;password&quot;: &quot;1234567891&quot;,&#xd;
-  &quot;organizationId&quot;: &quot;ca0e4566-ebfc-4512-a3b5-ef7c429ea449&quot;&#xd;
+  &quot;organizationId&quot;: &quot;85e2f251-cf05-42e7-97bf-91f3949e0ad6&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -392,17 +393,17 @@ if (matcher.find()) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
-                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2NzYxMjgzLCJleHAiOjE3NDE4NjYwODMsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.6Y9LIh9opjDpUbukGmndDDak6TBt7ICXjpO66SrZ7wk</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
           </Arguments>
           <hashTree/>
-          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="get-random-name" enabled="true">
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="get-random-name">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -413,7 +414,7 @@ vars.put(&quot;newRandomName&quot;, randomString + randomNum)
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223PreProcessor>
           <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -427,7 +428,7 @@ vars.put(&quot;newRandomName&quot;, randomString + randomNum)
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-get" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-get">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM account
@@ -462,7 +463,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get accout by id" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get accout by id">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/account/${accountId_1}</stringProp>
@@ -492,17 +493,18 @@ if (matcher.find()) {
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
-                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2NzMyMjMzLCJleHAiOjE3NDE4MzcwMzMsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.uM3bWA4Qmk4LA2jHOslBnXRUZdptdxE-r-J8ClGpxmU</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
           </Arguments>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-user-id" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-user-id">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM app_user
+Where username != &apos;m0_admin&apos;
 ORDER BY RANDOM()
 LIMIT 1;
 </stringProp>
@@ -516,7 +518,7 @@ LIMIT 1;
           <stringProp name="variableNames">id</stringProp>
         </JDBCSampler>
         <hashTree>
-          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -534,7 +536,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create account" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create account">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/account</stringProp>
@@ -558,7 +560,7 @@ if (matcher.find()) {
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="generate create account data" enabled="true">
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="generate create account data">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
@@ -577,7 +579,7 @@ vars.put(&quot;randomAccountBalance&quot;, String.valueOf(randomNum))
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223PreProcessor>
           <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -590,18 +592,18 @@ vars.put(&quot;randomAccountBalance&quot;, String.valueOf(randomNum))
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
-                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2NzYxMjgzLCJleHAiOjE3NDE4NjYwODMsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.6Y9LIh9opjDpUbukGmndDDak6TBt7ICXjpO66SrZ7wk</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
           </Arguments>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-delete" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-delete">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM account
@@ -636,7 +638,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="delete account by id" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="delete account by id">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/account/${accountId_2}</stringProp>
@@ -662,21 +664,22 @@ if (matcher.find()) {
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
-                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2NzYxMjgzLCJleHAiOjE3NDE4NjYwODMsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.6Y9LIh9opjDpUbukGmndDDak6TBt7ICXjpO66SrZ7wk</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
           </Arguments>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-user-id_1" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-user-id_1">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM app_user
+where username != &apos;m0_admin&apos;
 ORDER BY RANDOM()
 LIMIT 1;
 </stringProp>
@@ -708,7 +711,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get report summary by id" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get report summary by id">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/report/user-summary/${userId_1}</stringProp>
@@ -734,18 +737,18 @@ if (matcher.find()) {
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
-                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2NzYxMjgzLCJleHAiOjE3NDE4NjYwODMsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.6Y9LIh9opjDpUbukGmndDDak6TBt7ICXjpO66SrZ7wk</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
           </Arguments>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-type-id" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-type-id">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM transaction_type
@@ -780,7 +783,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-create-trans" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-account-id-for-create-trans">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM account
@@ -815,7 +818,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="get-trans-status" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="get-trans-status">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM status
@@ -850,7 +853,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create transaction" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="create transaction">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/transaction</stringProp>
@@ -900,18 +903,18 @@ vars.put(&quot;accountAmount&quot;, String.valueOf(randomNum))
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
-                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2NzYxMjgzLCJleHAiOjE3NDE4NjYwODMsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.6Y9LIh9opjDpUbukGmndDDak6TBt7ICXjpO66SrZ7wk</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
           </Arguments>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-id" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-id">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM transactions
@@ -946,7 +949,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get trans by id" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get trans by id">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/transaction/${transId}</stringProp>
@@ -972,18 +975,18 @@ if (matcher.find()) {
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
-                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2NzYxMjgzLCJleHAiOjE3NDE4NjYwODMsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.6Y9LIh9opjDpUbukGmndDDak6TBt7ICXjpO66SrZ7wk</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
           </Arguments>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-id-for-delete" enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="db-get-transaction-id-for-delete">
           <stringProp name="dataSource">db_mono</stringProp>
           <stringProp name="query">SELECT id
 FROM transactions
@@ -1018,7 +1021,7 @@ if (matcher.find()) {
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="delete transaction by id" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="delete transaction by id">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">7500</stringProp>
           <stringProp name="HTTPSampler.path">/mono/finance-app/transaction/${trns_2}</stringProp>
@@ -1044,11 +1047,11 @@ if (matcher.find()) {
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt" enabled="true">
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="jwt">
             <collectionProp name="Arguments.arguments">
               <elementProp name="authToken" elementType="Argument">
                 <stringProp name="Argument.name">authToken</stringProp>
-                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2MjAwNzE1LCJleHAiOjE3NDEzMDU1MTUsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.AeSXdMoE3VrS4nuK4a-bvw5gzKnWV9gjAPH94ogwxSc</stringProp>
+                <stringProp name="Argument.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJ1c2VybmFtZSI6Im0wX2FkbWluIiwiaWF0IjoxNzM2NzYxMjgzLCJleHAiOjE3NDE4NjYwODMsImlzcyI6InNwcmluZy1hcHAvY29yZS1hcGkvYW1zIn0.6Y9LIh9opjDpUbukGmndDDak6TBt7ICXjpO66SrZ7wk</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
