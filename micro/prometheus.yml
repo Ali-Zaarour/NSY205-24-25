@@ -1,0 +1,29 @@
+global:
+  scrape_interval: 15s # How often to scrape targets by default
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'auth-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['auth-service:8090']
+
+  - job_name: 'client-service'
+    metrics_path: '/micro/client-service/actuator/prometheus'
+    static_configs:
+      - targets: ['client-service:8091']
+
+  - job_name: 'report-service'
+    metrics_path: '/micro/report-service/actuator/prometheus'
+    static_configs:
+      - targets: ['report-service:8092']
+
+  - job_name: 'account-service'
+    metrics_path: '/micro/account-service/actuator/prometheus'
+    static_configs:
+      - targets: ['account-service:8093']
+
+  - job_name: 'transaction-service'
+    metrics_path: '/micro/transaction-service/actuator/prometheus'
+    static_configs:
+      - targets: ['transaction-service:8094']
