@@ -7,6 +7,6 @@ spec:
     app: report-service
   ports:
     - protocol: TCP
-      port: 80          # External port for accessing the service
+      port: 8092          # External port for accessing the service
       targetPort: 8092  # Internal container port
   type: ClusterIP       # Internal service for communication within the cluster

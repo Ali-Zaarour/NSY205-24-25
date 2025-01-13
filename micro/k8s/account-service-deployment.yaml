@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: account-service
-          image: account-service:latest
+          image: localhost:5000/micro-account-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8093

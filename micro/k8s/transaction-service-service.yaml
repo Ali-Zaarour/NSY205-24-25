@@ -7,6 +7,7 @@ spec:
     app: transaction-service
   ports:
     - protocol: TCP
-      port: 80          # External port for accessing the service
+      port: 8094          # External port for accessing the service
       targetPort: 8094  # Internal container port
   type: ClusterIP       # Internal service for communication within the cluster
+

@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: client-service
-          image: client-service:latest
+          image: localhost:5000/micro-client-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8091

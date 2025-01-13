@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: auth-service:latest
+          image: localhost:5000/micro-auth-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8090

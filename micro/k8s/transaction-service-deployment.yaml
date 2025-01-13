@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: transaction-service
-          image: transaction-service:latest
+          image: localhost:5000/micro-transaction-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8094
