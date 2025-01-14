@@ -20,7 +20,7 @@ spec:
       labels:
         app: auth-service
     spec:
-      hostNetwork: true
+      #hostNetwork: true
       containers:
         - name: auth-service
           image: localhost:5000/auth-service:latest
@@ -56,14 +56,16 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8090
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 5
+            timeoutSeconds: 5
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 8090
-            initialDelaySeconds: 60
+            initialDelaySeconds: 90
             periodSeconds: 10
+            timeoutSeconds: 5
       volumes:
         - name: gateway-routes-volume
           configMap:

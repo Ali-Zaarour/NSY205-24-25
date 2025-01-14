@@ -20,7 +20,7 @@ spec:
       labels:
         app: account-service
     spec:
-      hostNetwork: true
+      #hostNetwork: true
       containers:
         - name: account-service
           image: localhost:5000/account-service:latest
@@ -46,11 +46,13 @@ spec:
             httpGet:
               path: /micro/account-service/actuator/health
               port: 8093
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 5
+            timeoutSeconds: 5
           livenessProbe:
             httpGet:
               path: /micro/account-service/actuator/health
               port: 8093
-            initialDelaySeconds: 60
+            initialDelaySeconds: 90
             periodSeconds: 10
+            timeoutSeconds: 5

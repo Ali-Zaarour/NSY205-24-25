@@ -20,7 +20,7 @@ spec:
       labels:
         app: client-service
     spec:
-      hostNetwork: true
+      #hostNetwork: true
       containers:
         - name: client-service
           image: localhost:5000/client-service:latest
@@ -44,13 +44,15 @@ spec:
               value: postgres
           readinessProbe:
             httpGet:
-              path: micro/client-service/actuator/health
-              port: 8091
-            initialDelaySeconds: 30
-            periodSeconds: 5
-          livenessProbe:
-            httpGet:
-              path: micro/client-service/actuator/health
+              path: /micro/client-service/actuator/health
               port: 8091
             initialDelaySeconds: 60
+            periodSeconds: 5
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /micro/client-service/actuator/health
+              port: 8091
+            initialDelaySeconds: 90
             periodSeconds: 10
+            timeoutSeconds: 5

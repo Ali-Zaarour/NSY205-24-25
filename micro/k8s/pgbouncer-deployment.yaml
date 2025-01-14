@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgbouncer
+  namespace: micro-app
+  labels:
+    app: pgbouncer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgbouncer
+  template:
+    metadata:
+      labels:
+        app: pgbouncer
+    spec:
+      containers:
+        - name: pgbouncer
+          image: localhost:5000/pgbouncer:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6432
+          volumeMounts:
+            - name: pgbouncer-config
+              mountPath: /tmp/pgbouncer-config
+            - name: pgbouncer-writable
+              mountPath: /etc/pgbouncer
+          command:
+            - sh
+            - -c
+            - |
+              cp /tmp/pgbouncer-config/* /etc/pgbouncer/ && exec pgbouncer /etc/pgbouncer/pgbouncer.ini
+      volumes:
+        - name: pgbouncer-config
+          configMap:
+            name: pgbouncer-config
+        - name: pgbouncer-writable
+          emptyDir: {}
