@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: account-service-deployment
+  namespace: micro-app
   labels:
     app: account-service
 spec:
@@ -19,28 +20,37 @@ spec:
       labels:
         app: account-service
     spec:
+      hostNetwork: true
       containers:
         - name: account-service
-          image: localhost:5000/micro-account-service:latest
+          image: localhost:5000/account-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8093
           resources:
             requests:
-              cpu: "100m"       # Minimum CPU: 10% of a core
-              memory: "128Mi"   # Minimum memory: 128MiB
+              memory: "256Mi"
+              cpu: "250m"
             limits:
-              cpu: "200m"       # Maximum CPU: 20% of a core
-              memory: "256Mi"   # Maximum memory: 256MiB
+              memory: "512Mi"
+              cpu: "500m"
+          env:
+            # Database configuration
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://host.docker.internal:5433/mono-db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: postgres
           readinessProbe:
             httpGet:
-              path: /actuator/health
+              path: /micro/account-service/actuator/health
               port: 8093
-            initialDelaySeconds: 10
+            initialDelaySeconds: 30
             periodSeconds: 5
           livenessProbe:
             httpGet:
-              path: /actuator/health
+              path: /micro/account-service/actuator/health
               port: 8093
-            initialDelaySeconds: 15
+            initialDelaySeconds: 60
             periodSeconds: 10

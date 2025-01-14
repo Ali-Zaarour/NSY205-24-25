@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: micro-app
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s # How often to scrape targets by default
+      evaluation_interval: 15s
+
+    scrape_configs:
+      - job_name: 'dynamic-services'
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          # Filter pods in the "micro-app" namespace
+          - source_labels: [__meta_kubernetes_namespace]
+            regex: micro-app
+            action: keep
+          # Keep only pods with matching app labels
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            regex: 'auth-service|client-service|report-service|account-service|transaction-service'
+            action: keep
+          # Set the target address as pod IP and port
+          - source_labels: [__meta_kubernetes_pod_ip, __meta_kubernetes_pod_container_port_number]
+            separator: ':'
+            target_label: __address__
+            replacement: ${1}:${2}
+          # Assign the app name as the job name
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            target_label: job
+          # Assign a specific metrics path based on the app name
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            regex: auth-service
+            target_label: __metrics_path__
+            replacement: /actuator/prometheus
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            regex: client-service
+            target_label: __metrics_path__
+            replacement: /micro/client-service/actuator/prometheus
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            regex: report-service
+            target_label: __metrics_path__
+            replacement: /micro/report-service/actuator/prometheus
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            regex: account-service
+            target_label: __metrics_path__
+            replacement: /micro/account-service/actuator/prometheus
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            regex: transaction-service
+            target_label: __metrics_path__
+            replacement: /micro/transaction-service/actuator/prometheus
+        scheme: http
+      

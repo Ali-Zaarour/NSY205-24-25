@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: report-service
+  namespace: micro-app
 spec:
   selector:
     app: report-service
@@ -9,4 +10,5 @@ spec:
     - protocol: TCP
       port: 8092          # External port for accessing the service
       targetPort: 8092  # Internal container port
-  type: ClusterIP       # Internal service for communication within the cluster
+      nodePort: 31292
+  type: NodePort       # Internal service for communication within the cluster

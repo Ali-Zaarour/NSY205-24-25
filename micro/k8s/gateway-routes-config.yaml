@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-routes-config
+  namespace: micro-app
+data:
+  application.yml: |
+    spring:
+      cloud:
+        gateway:
+          mvc:
+            routes:
+              - id: client-service
+                uri: http://client-service.micro-app.svc.cluster.local:8091
+                predicates:
+                  - Path=/micro/client-service/**
+                filters:
+                  - AddRequestHeader=X-User-Id, #{request.getAttribute('X-User-Id')}
+                  - AddRequestHeader=X-User-Roles, #{request.getAttribute('X-User-Roles')}
+                  - RemoveRequestHeader=authorization
+
+              - id: report-service
+                uri: http://report-service.micro-app.svc.cluster.local:8092
+                predicates:
+                  - Path=/micro/report-service/**
+                filters:
+                  - AddRequestHeader=X-User-Id, #{request.getAttribute('X-User-Id')}
+                  - AddRequestHeader=X-User-Roles, #{request.getAttribute('X-User-Roles')}
+
+              - id: account-service
+                uri: http://account-service.micro-app.svc.cluster.local:8093
+                predicates:
+                  - Path=/micro/account-service/**
+                filters:
+                  - AddRequestHeader=X-User-Id, #{request.getAttribute('X-User-Id')}
+                  - AddRequestHeader=X-User-Roles, #{request.getAttribute('X-User-Roles')}
+
+              - id: transaction-service
+                uri: http://transaction-service.micro-app.svc.cluster.local:8094
+                predicates:
+                  - Path=/micro/transaction-service/**
+                filters:
+                  - AddRequestHeader=X-User-Id, #{request.getAttribute('X-User-Id')}
+                  - AddRequestHeader=X-User-Roles, #{request.getAttribute('X-User-Roles')}

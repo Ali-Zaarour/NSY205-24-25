@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auth-service-deployment
+  namespace: micro-app
   labels:
     app: auth-service
 spec:
@@ -19,28 +20,51 @@ spec:
       labels:
         app: auth-service
     spec:
+      hostNetwork: true
       containers:
         - name: auth-service
-          image: localhost:5000/micro-auth-service:latest
+          image: localhost:5000/auth-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8090
           resources:
             requests:
-              cpu: "100m"       # Minimum CPU: 10% of a core
-              memory: "128Mi"   # Minimum memory: 128MiB
+              memory: "256Mi"
+              cpu: "250m"
             limits:
-              cpu: "200m"       # Maximum CPU: 20% of a core
-              memory: "256Mi"   # Maximum memory: 256MiB
+              memory: "512Mi"
+              cpu: "500m"
+          env:
+            # Spring profile
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev        # Set the active Spring profile here
+            # Database configuration
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://host.docker.internal:5433/mono-db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: postgres
+            # Spring configuration locations (override gateway)
+            - name: SPRING_CONFIG_ADDITIONAL_LOCATION
+              value: file:/config/gateway/
+          volumeMounts:
+            - name: gateway-routes-volume
+              mountPath: /config/gateway/application-gateway.yml
+              subPath: application-gateway.yml
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8090
-            initialDelaySeconds: 10
+            initialDelaySeconds: 30
             periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 8090
-            initialDelaySeconds: 15
+            initialDelaySeconds: 60
             periodSeconds: 10
+      volumes:
+        - name: gateway-routes-volume
+          configMap:
+            name: gateway-routes-config
