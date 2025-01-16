@@ -42,3 +42,14 @@ data:
                 filters:
                   - AddRequestHeader=X-User-Id, #{request.getAttribute('X-User-Id')}
                   - AddRequestHeader=X-User-Roles, #{request.getAttribute('X-User-Roles')}
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: "*"
+      security:
+        enabled: false
+    logging:
+      level:
+        org.springframework.cloud.gateway: DEBUG
+        org.springframework.web: DEBUG
