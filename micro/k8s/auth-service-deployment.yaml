@@ -37,7 +37,7 @@ spec:
           env:
             # Spring profile
             - name: SPRING_PROFILES_ACTIVE
-              value: dev        # Set the active Spring profile here
+              value: prod        # Set the active Spring profile here
             # Database configuration
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://host.docker.internal:5433/mono-db

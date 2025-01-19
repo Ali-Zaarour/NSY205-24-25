@@ -8,6 +8,7 @@ services:
     ports:
       - "8090:8090" # Expose auth-service
     environment:
+      - SPRING_PROFILES_ACTIVE=prod
       - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5433/mono-db
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
