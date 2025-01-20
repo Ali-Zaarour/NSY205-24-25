@@ -29,11 +29,11 @@ spec:
             - containerPort: 8093
           resources:
             requests:
-              memory: "256Mi"
-              cpu: "250m"
-            limits:
               memory: "512Mi"
-              cpu: "500m"
+              cpu: "750m"
+            limits:
+              memory: "1Gi"
+              cpu: "2"
           env:
             # Database configuration
             - name: SPRING_DATASOURCE_URL
@@ -46,7 +46,7 @@ spec:
             httpGet:
               path: /micro/account-service/actuator/health
               port: 8093
-            initialDelaySeconds: 60
+            initialDelaySeconds: 90
             periodSeconds: 5
             timeoutSeconds: 5
           livenessProbe:

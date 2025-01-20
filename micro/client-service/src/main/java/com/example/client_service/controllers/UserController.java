@@ -3,7 +3,6 @@ package com.example.client_service.controllers;
 
 import com.example.client_service.dto.AppUserDTO;
 import com.example.client_service.dto.UpdatedAppUserInfoDTO;
-import com.example.client_service.entity.AppUser;
 import com.example.client_service.exception.config.ErrorStruct;
 import com.example.client_service.exception.config.ExceptionMessage;
 import com.example.client_service.payload.CreateUserRequest;
@@ -15,13 +14,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @Tag(name = "User api")
@@ -114,8 +114,8 @@ public class UserController {
     )
     @PatchMapping
     @PreAuthorize("hasAuthority('permission:update-user')")
-    public ResponseEntity<UpdatedAppUserInfoDTO> updateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest, @AuthenticationPrincipal @NonNull AppUser principalDetails) {
-        var updatedUser = userService.updateUser(updateUserRequest, principalDetails.getId());
+    public ResponseEntity<UpdatedAppUserInfoDTO> updateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest, Authentication authentication) {
+        var updatedUser = userService.updateUser(updateUserRequest,  UUID.fromString((String) authentication.getPrincipal()));
         return updatedUser.map(ResponseEntity::ok).orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NOTHING_TO_UPDATE));
     }
 }

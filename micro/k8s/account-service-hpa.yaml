@@ -8,7 +8,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: account-service-deployment
-  minReplicas: 1
+  minReplicas: 2
   maxReplicas: 5
   metrics:
     - type: Resource
@@ -17,3 +17,16 @@ spec:
         target:
           type: Utilization
           averageUtilization: 50
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60 # Wait 60 seconds before scaling up further
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 30 # Add 1 pod at most every 30 seconds
+    scaleDown:
+      stabilizationWindowSeconds: 300 # Prevent aggressive scale-down
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 60 # Remove 1 pod at most every 60 seconds

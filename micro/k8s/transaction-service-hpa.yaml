@@ -16,4 +16,17 @@ spec:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 50
+          averageUtilization: 60
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60 # Wait 60 seconds before scaling up further
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 30 # Add 1 pod at most every 30 seconds
+    scaleDown:
+      stabilizationWindowSeconds: 300 # Prevent aggressive scale-down
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 60 # Remove 1 pod at most every 60 seconds
