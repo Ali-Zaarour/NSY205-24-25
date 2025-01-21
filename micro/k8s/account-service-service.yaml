@@ -12,3 +12,4 @@ spec:
       targetPort: 8093  # Internal container port
       nodePort: 31293
   type: NodePort
+  sessionAffinity: None   # Ensure traffic is distributed evenly across pods

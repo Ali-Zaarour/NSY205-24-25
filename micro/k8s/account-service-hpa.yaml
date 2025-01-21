@@ -19,11 +19,11 @@ spec:
           averageUtilization: 50
   behavior:
     scaleUp:
-      stabilizationWindowSeconds: 60 # Wait 60 seconds before scaling up further
+      stabilizationWindowSeconds: 0 # Wait 60 seconds before scaling up further
       policies:
         - type: Pods
           value: 1
-          periodSeconds: 30 # Add 1 pod at most every 30 seconds
+          periodSeconds: 10 # Add 1 pod at most every 30 seconds
     scaleDown:
       stabilizationWindowSeconds: 300 # Prevent aggressive scale-down
       policies:

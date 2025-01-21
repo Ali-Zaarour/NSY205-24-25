@@ -30,10 +30,10 @@ spec:
           resources:
             requests:
               memory: "512Mi"
-              cpu: "2"
+              cpu: "750m"
             limits:
               memory: "1Gi"
-              cpu: "3"
+              cpu: "2"
           env:
             # Database configuration
             - name: SPRING_DATASOURCE_URL

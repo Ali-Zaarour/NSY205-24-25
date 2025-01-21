@@ -10,6 +10,7 @@ data:
       evaluation_interval: 15s
 
     scrape_configs:
+      # Scrape dynamic services in the "micro-app" namespace
       - job_name: 'dynamic-services'
         kubernetes_sd_configs:
           - role: pod
@@ -27,10 +28,16 @@ data:
             separator: ':'
             target_label: __address__
             replacement: ${1}:${2}
+          # Use the pod name as the instance label
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: instance
+          # Add pod name as a separate label
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod_name
           # Assign the app name as the job name
           - source_labels: [__meta_kubernetes_pod_label_app]
             target_label: job
-          # Assign a specific metrics path based on the app name
+          # Assign specific metrics path based on the app name
           - source_labels: [__meta_kubernetes_pod_label_app]
             regex: auth-service
             target_label: __metrics_path__
@@ -52,4 +59,48 @@ data:
             target_label: __metrics_path__
             replacement: /micro/transaction-service/actuator/prometheus
         scheme: http
-      
+
+      # Scrape kubelet metrics for node resource usage
+      - job_name: 'kubelet'
+        metrics_path: /metrics/cadvisor
+        kubernetes_sd_configs:
+          - role: node
+        scheme: https
+        tls_config:
+          insecure_skip_verify: true
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_node_name]
+            target_label: instance
+
+      # Scrape Metrics Server for API resource metrics
+      - job_name: 'kubernetes-metrics-server'
+        metrics_path: /metrics
+        kubernetes_sd_configs:
+          - role: endpoints
+        scheme: https
+        tls_config:
+          insecure_skip_verify: true
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name]
+            regex: kube-system;metrics-server
+            action: keep
+
+      # Fallback for pods not matched by other jobs
+      - job_name: 'default-pods'
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          # Set the target address as pod IP and port
+          - source_labels: [__meta_kubernetes_pod_ip, __meta_kubernetes_pod_container_port_number]
+            separator: ':'
+            target_label: __address__
+            replacement: ${1}:${2}
+          # Use the pod name as the instance label
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: instance
+          # Add pod name as a separate label
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod_name
+          # Assign a default job name
+          - target_label: job
+            replacement: default-pods

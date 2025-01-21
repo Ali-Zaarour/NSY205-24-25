@@ -12,3 +12,4 @@ spec:
       targetPort: 8090  # Internal container port
       nodePort: 31290
   type: NodePort       # Internal service for communication within the cluster
+  sessionAffinity: None   # Ensure traffic is distributed evenly across pods
