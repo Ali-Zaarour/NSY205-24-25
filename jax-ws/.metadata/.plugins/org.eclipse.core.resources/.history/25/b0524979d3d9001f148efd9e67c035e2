@@ -1,0 +1,21 @@
+package metier;
+
+import java.util.Date;
+
+public class Compte {
+	
+	private int code;
+	
+	private double solde;
+	
+	private Date dateCreation;
+
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
+}

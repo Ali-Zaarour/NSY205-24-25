@@ -1,0 +1,9 @@
+package ws;
+
+public class BanqueService {
+	
+	public double conversion(double mt) {
+		return mt*11;
+	}
+
+}

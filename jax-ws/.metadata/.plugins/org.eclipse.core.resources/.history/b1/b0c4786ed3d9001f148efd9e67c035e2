@@ -1,0 +1,11 @@
+package metier;
+
+public class Compte {
+	
+	private int code;
+	
+	private double solde;
+	
+	private Date dateCreation.;
+
+}

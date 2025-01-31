@@ -1,0 +1,9 @@
+package défaut;
+
+public class ServerJaxWS {
+
+	public void main(String[] args) {
+
+	}
+
+}

@@ -1,0 +1,16 @@
+package ws;
+
+import metier.Compte;
+
+public class BanqueService {
+	
+	public double conversion(double mt) {
+		return mt*11;
+	}
+	
+	public Compte getCompte(int code) {
+		new Compte (1,Math.random()*9000, new Date())
+	}
+
+
+}
